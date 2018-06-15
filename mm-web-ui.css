@@ -1,0 +1,58 @@
+/* Cascading Stylesheet for mm-web-ui */
+
+
+/* Basic Metamath look */
+.i { float: left; }
+.hyp th,.stmt th,.proof th { border: 1px solid #CCC; }
+.hyp td,.stmt td,.proof td { border: 1px solid #CCC; }
+.proof tr:nth-child(even) { background-color: #F8FFFC; }
+.hyp tr:nth-child(even) { background-color: #F8FFFC; }
+tr.hant { background-color: #D0F0FF !important; }
+tr.hstmt { background-color: #C0D0FF !important; }
+tr.hdep { background-color: #F0F0FF !important; }
+
+
+/* Specific adaptations to MathJax */
+.mjpage__block { margin: .3em 0em !important }
+.mjpage__block { float: left!important; width: inherit !important; text-align: left !important; }
+.mjpage__block { display: inline-block!important; }
+
+
+
+/* Highlighting antecedents */
+tr div {  overflow: hidden; max-height: 220px; transition: max-height .7s ease; }
+.collapsed div { max-height: 0px; } 
+.collapsed td { border-width: 0px; padding: 0px; transition: all .7s ease; }
+.proof td:nth-child(4) div { padding-right: 100px; }
+/*
+tr td:first-child div:before { content: "<span class='icon'></span>"; display:inline-block; background-size:16px; width: 16px; height:16px; }
+tr:not(.ant-collapsed) td:first-child div:before { background-image: url('caret-up.png'); }
+tr.ant-collapsed td:first-child div:before { background-image: url('caret-right.png'); }
+tr.ant-none td:first-child div:before { background-image: url('cdot.png'); }
+*/
+tr:not(.ant-collapsed) .hnav { background-image: url('images/caret-up.png'); }
+tr.ant-collapsed .hnav { background-image: url('images/caret-right.png'); }
+tr.ant-none .hnav { background-image: url('images/cdot.png'); }
+
+#tools { float: right; }
+#tools .icon { display: inline-block; vertical-align: middle; }
+
+#overall, .hnav, .copy { background-size: 16px; background-repeat: no-repeat; background-position: center; }
+#overall.collapse-all { background-image: url('images/collapse-all.png'); }
+#overall:not(.collapse-all) { background-image: url('images/expand-all.png'); }
+
+#level { font-size: .75em; margin: .15em 0; width: 2em; text-align: right; padding: .1em 1em .1em 0; }
+#level + .ui-spinner-button, #level + .ui-spinner-button + .ui-spinner-button  { width: .6em; }
+#level:focus { outline: none; }
+
+.icon { width: 16px; height: 16px; margin: 2px; border-radius: 3px; padding: 2px; border: solid 1px lightgray; }
+.icon:hover { cursor: pointer; background-color: white; }
+.icon:active { background-color: gray; }
+
+.hnav { width: 22px; height: 22px; }
+
+
+
+/* Clipboard */
+.copy { float: right; margin-right: -100px; background-image: url('images/copy.png'); }
+.mjpage__block { display: inline-block!important; float: left; padding: 5px; }
