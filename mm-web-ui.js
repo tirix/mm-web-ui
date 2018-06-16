@@ -58,7 +58,7 @@ function resetTree() {
 
 var labels = [];
 $(function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="../hant.css">');
+	$('head').append('<link rel="stylesheet" type="text/css" href="../mm-web-ui.css">');
 	$('.proof span.r').each(function() { initialLabels.push($(this).text()); });
 	initialLabels.sort((a, b) => (Number(b) - Number(a)));
 	resetTree();
@@ -109,7 +109,7 @@ $.getScript('mm-web-ui/externals/clipboard.min.js', function() {
 
 // Marnix's Indentation
 $(function() {
-	$.getScript('mm-calc-user.js');
+	$.getScript('mm-web-ui/mm-calc-user.js');
 	$('#tools').append('<span class="icon" title="switch to calculation-like indentation" id="marnix">M</span>');
 	$('#marnix').click(function() { $(this).toggle(); marnix(); });
 });
