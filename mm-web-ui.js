@@ -51,16 +51,18 @@ var initialLabels = [];
 var level = 12; // take only 12 first elements
 function resetTree() {
 	labels = initialLabels.slice(0, level); 
-	$('.proof tr').addClass("collapsed").addClass("ant-collapsed");
-	$('.proof tr:not(:last) div').hide();
-	$('.proof span.r').each(function() { 
+	$('.proof tr').addClass("ant-collapsed");
+	$('.proof tr:not(:last) span.r').each(function() { 
 		if(labels.indexOf($(this).text()) != -1) {
 			$(this).parents('tr').removeClass("collapsed"); 
-			$(this).parents('tr').find('div').show();
+			$(this).parents('tr').find('div').slideDown();
+			}
+		else {
+			$(this).parents('tr').find('div').slideUp();
+			$(this).parents('tr').addClass("collapsed"); 
 			}
 		});
-	$('.proof tr:last').removeClass("collapsed");
-}
+	}
 
 var labels = [];
 $(function() {
@@ -102,6 +104,7 @@ $.getScript('mm-web-ui/externals/jquery-ui.min.js', function() {
 			else if ( ui.value < 5 ) { $( this ).spinner( "value", 5 ); return false; }
 			level = ui.value;
 			resetTree();
+			$('#overall').attr('title',"show all steps").removeClass("collapse-all");
 		}
 	});
 });
