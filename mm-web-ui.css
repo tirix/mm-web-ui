@@ -20,16 +20,9 @@ tr.hdep { background-color: #F0F0FF !important; }
 
 
 /* Highlighting antecedents */
-tr div {  overflow: hidden; max-height: 220px; transition: max-height .7s ease; }
-.collapsed div { max-height: 0px; } 
+tr div {  overflow: hidden; }
 .collapsed td { border-width: 0px; padding: 0px; transition: all .7s ease; }
 .proof td:nth-child(4) div { padding-right: 100px; }
-/*
-tr td:first-child div:before { content: "<span class='icon'></span>"; display:inline-block; background-size:16px; width: 16px; height:16px; }
-tr:not(.ant-collapsed) td:first-child div:before { background-image: url('caret-up.png'); }
-tr.ant-collapsed td:first-child div:before { background-image: url('caret-right.png'); }
-tr.ant-none td:first-child div:before { background-image: url('cdot.png'); }
-*/
 tr:not(.ant-collapsed) .hnav { background-image: url('images/caret-up.png'); }
 tr.ant-collapsed .hnav { background-image: url('images/caret-right.png'); }
 tr.ant-none .hnav { background-image: url('images/cdot.png'); }

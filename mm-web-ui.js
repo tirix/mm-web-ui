@@ -15,7 +15,6 @@ function htmlent(str) {
 }
 
 // Highlight antecedents
-
 function hant(elt) {
 	elt.toggleClass('hstmt'); 
 	elt.ant().toggleClass('hant');
@@ -32,16 +31,17 @@ $(function() {
 
 
 // Collapsing proofs parts
-
 jQuery.prototype.collapse=function() {
 	$(this).each(function() {
 		$(this).addClass('collapsed');
+		$(this).find('div').slideUp();
 		$(this).ant().collapse();
 	});
 }
 
 jQuery.prototype.expand=function() {
 	$(this).each(function() {
+		$(this).find('div').slideDown();
 		$(this).removeClass('collapsed');
 		$(this).filter(":not(.ant-collapsed)").ant().expand();
 	});
@@ -52,7 +52,13 @@ var level = 12; // take only 12 first elements
 function resetTree() {
 	labels = initialLabels.slice(0, level); 
 	$('.proof tr').addClass("collapsed").addClass("ant-collapsed");
-	$('.proof span.r').each(function() { if(labels.indexOf($(this).text()) != -1) $(this).parents("tr").removeClass("collapsed"); });
+	$('.proof tr:not(:last) div').hide();
+	$('.proof span.r').each(function() { 
+		if(labels.indexOf($(this).text()) != -1) {
+			$(this).parents('tr').removeClass("collapsed"); 
+			$(this).parents('tr').find('div').show();
+			}
+		});
 	$('.proof tr:last').removeClass("collapsed");
 }
 
@@ -79,6 +85,7 @@ $(function() {
 		}
 		else {
 			$('.proof tr').removeClass("collapsed").removeClass("ant-collapsed");
+			$('.proof tr div').slideDown();
 			$('#overall').attr('title',"reset view");
 		}
 		$(this).toggleClass('collapse-all'); 
