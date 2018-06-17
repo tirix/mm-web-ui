@@ -88,7 +88,7 @@ $(function() {
 // Variable initial depth
 $.getScript('mm-web-ui/externals/jquery-ui.min.js', function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="mm-web-ui/externals/jquery-ui.min.css">');
-	$('#tools').append('<input id="level" name="level" value="12">');
+	$('#tools').append('<input id="level" name="level" value="12" title="Number of steps initially shown">');
 	$( "#level" ).spinner({
 		spin: function( event, ui ) {
 			if ( ui.value > 50 ) { $( this ).spinner( "value", 50 ); return false; } 
@@ -112,4 +112,14 @@ $(function() {
 	$.getScript('mm-web-ui/mm-calc-user.js');
 	$('#tools').append('<span class="icon" title="switch to calculation-like indentation" id="marnix">M</span>');
 	$('#marnix').click(function() { $(this).toggle(); marnix(); });
+});
+
+// Special hook for fixing the links of the "Tirix" site
+$(function() {
+	if(window.location.origin!="metamath.tirix.org") return;
+	$("a:contains('Unicode version')").each(function() {
+		$(this).attr("href", "http://us2.metamath.org/"+$(this).attr("href"));
+	});
+	$("a:contains('Nearby theorems')").hide();
+	$("a:contains('Mirrors')").attr("href", "http://us2.metamath.org:88/mm.html");
 });
