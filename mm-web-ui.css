@@ -18,10 +18,9 @@ tr.hdep { background-color: #F0F0FF !important; }
 .mjpage__block { display: inline-block!important; }
 
 
-
 /* Highlighting antecedents */
 tr div {  overflow: hidden; }
-.collapsed td { border-width: 0px; padding: 0px; transition: all .7s ease; }
+.collapsed td { border-width: 0px; padding: 0px; }
 .proof td:nth-child(4) div { padding-right: 100px; }
 tr:not(.ant-collapsed) .hnav { background-image: url('images/caret-up.png'); }
 tr.ant-collapsed .hnav { background-image: url('images/caret-right.png'); }
