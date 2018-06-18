@@ -6,7 +6,7 @@ jQuery.prototype.ant=function() {
 }
 	
 jQuery.prototype.dep=function() { 
-	ref=$(this).children().eq(0).find("div").html();
+	ref=parseInt($(this).children().eq(0).find("div").text());
 	return $("a[href='#"+ref+"']").parents("tr");
 }
 
@@ -22,7 +22,7 @@ function hant(elt) {
 };
 
 $(function() {
-	$('.proof tr th:nth-child(4)').append('<span id="tools"/></span>');
+	$('.proof tr th:nth-child(4)').append('<span id="tools"/></span>').css('height','26px').css('line-height','26px');
 	$('.proof tr:first').addClass('header');
 	$('.proof tr td').wrapInner('<div />');
 	$('.proof tr').mouseenter(function(){ hant($(this)); });

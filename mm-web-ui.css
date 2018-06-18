@@ -2,23 +2,35 @@
 
 
 /* Basic Metamath look */
-.i { float: left; }
-.hyp th,.stmt th,.proof th { border: 1px solid #CCC; }
+/* .i { float: left; }
+hyp th,.stmt th,.proof th { border: 1px solid #CCC; }
 .hyp td,.stmt td,.proof td { border: 1px solid #CCC; }
 .proof tr:nth-child(even) { background-color: #F8FFFC; }
-.hyp tr:nth-child(even) { background-color: #F8FFFC; }
-tr.hant { background-color: #D0F0FF !important; }
-tr.hstmt { background-color: #C0D0FF !important; }
-tr.hdep { background-color: #F0F0FF !important; }
+.hyp tr:nth-child(even) { background-color: #F8FFFC; } */
 
+/* More neutral colors */
+.i { float: left; color: #CBCBEC; margin-right: 5px; }
+.hyp, .stmt, .proof { color: #444455; background-color: #FCFCFE; border-top: none; border-left: none; border-right: 1px solid #C9D1D8; border-bottom: 1px solid #C9D1D8; }
+.hyp a, .stmt a, .proof a { color: #444455; text-decoration: none; }
+.hyp a:hover, .stmt a:hover, .proof a:hover { color: #4494FF; }
+.hyp th,.stmt th,.proof th { border-top: 1px solid #9292bf; border-left: 1px solid #9292bf; border-right: none; border-bottom: none; }
+.hyp td,.stmt td,.proof td { border-top: 1px solid #C9D1D8; border-left: 1px solid #C9D1D8; border-right: none; border-bottom: none; }
+.hyp th,.stmt th,.proof th { background-color: #9CBFDC; }
+td { padding-left: 6px; padding-right: 6px; }
+
+/* Highlighting of Antecedents */
+tr.hant { background-color: #ECF6FA !important; }
+tr.hstmt { background-color: #DDF1F7 !important; }
+tr.hdep { background-color: #ECF6FA !important; }
 
 /* Specific adaptations to MathJax */
 .mjpage__block { margin: .3em 0em !important }
 .mjpage__block { float: left!important; width: inherit !important; text-align: left !important; }
 .mjpage__block { display: inline-block!important; }
+.mjx-svg-href { fill: #444455 !important; cursor: pointer; }
+.mjx-svg-href:hover { fill: #4494FF !important; }
 
-
-/* Highlighting antecedents */
+/* Proof Collapsing */
 tr div {  overflow: hidden; }
 .collapsed td { border-width: 0px; padding: 0px; }
 .proof td:nth-child(4) div { padding-right: 100px; }
@@ -37,13 +49,12 @@ tr.ant-none .hnav { background-image: url('images/cdot.png'); }
 #level + .ui-spinner-button, #level + .ui-spinner-button + .ui-spinner-button  { width: .6em; }
 #level:focus { outline: none; }
 
-.icon { width: 16px; height: 16px; margin: 2px; border-radius: 3px; padding: 2px; border: solid 1px lightgray; }
-.icon:hover { cursor: pointer; background-color: white; }
-.icon:active { background-color: gray; }
+.icon { width: 16px; height: 16px; line-height: 18px; margin: 2px; border-radius: 3px; padding: 2px; background-color: #f3f6f8; border: solid 1px lightgray; outline: none; }
+.icon:hover { cursor: pointer; background-color: #e3e5e8; }
+.icon:active { background-color: #73aeea; }
+.icon:focus { background-color: #8AC0EF; }
 
-.hnav { width: 22px; height: 22px; }
-
-
+.hnav { width: 22px; height: 22px; margin-right: 6px; }
 
 /* Clipboard */
 .copy { float: right; margin-right: -100px; background-image: url('images/copy.png'); }
