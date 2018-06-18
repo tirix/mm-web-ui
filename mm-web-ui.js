@@ -15,18 +15,19 @@ function htmlent(str) {
 }
 
 // Highlight antecedents
-function hant(elt) {
-	elt.toggleClass('hstmt'); 
-	elt.ant().toggleClass('hant');
-	elt.dep().toggleClass('hdep');
+function hant() {
+	$('.proof tr').removeClass('hant hdep hstmt');
+	$(this).closest('tr').addClass('hstmt');
+	$(this).closest('tr').ant().addClass('hant');
+	$(this).closest('tr').dep().addClass('hdep');
+	if(!$(this).find('.hnav').is(":focus")) $(this).find('.hnav').focus();
 };
 
 $(function() {
 	$('.proof tr th:nth-child(4)').append('<span id="tools"/></span>').css('height','26px').css('line-height','26px');
 	$('.proof tr:first').addClass('header');
 	$('.proof tr td').wrapInner('<div />');
-	$('.proof tr').mouseenter(function(){ hant($(this)); });
-	$('.proof tr').mouseleave(function(){ hant($(this)); });
+	$('.proof tr').hover(hant);
 });
 
 
@@ -45,6 +46,16 @@ jQuery.prototype.expand=function() {
 		$(this).removeClass('collapsed');
 		$(this).filter(":not(.ant-collapsed)").ant().expand();
 	});
+}
+
+jQuery.prototype.prevWith=function(selector) {
+	if((prev = $(this).prev(selector)).length != 0) return prev;
+	return $(this).prevUntil(selector).prev();
+}
+
+jQuery.prototype.nextWith=function(selector) {
+	if((next = $(this).next(selector)).length != 0) return next;
+	return $(this).nextUntil(selector).next();
 }
 
 var initialLabels = [];
@@ -74,11 +85,41 @@ $(function() {
 		if($(this).children().eq(1).find("div").text() == '\xa0') $(this).addClass("ant-none"); 
 		$(this).children().eq(0).find("div").prepend('<button class="icon hnav">&nbsp;</button>');
 	});
-	$('.proof tr').click(function(){ 
-		if($(this).hasClass('ant-collapsed')) $(this).ant().expand(); 
-		else $(this).ant().collapse(); 
-		$(this).toggleClass('ant-collapsed');
+	$('.hnav').keydown(function(e) {
+		var event = window.event ? window.event : e;
+		switch(event.keyCode) {
+		case 37: // left
+			$(this).closest('tr').removeClass('ant-collapsed').ant().expand(); 
+			break;
+		case 38: // up
+			$(this).closest('tr').prevWith(':not(.collapsed)').find('.hnav').focus();
+			break;
+		case 39: // right
+			$(this).closest('tr').addClass('ant-collapsed').ant().collapse(); 
+			break;
+		case 40: // down
+			$(this).closest('tr').nextWith(':not(.collapsed)').find('.hnav').focus();
+			break;
+		}
+		event.preventDefault();
+	}).focus(hant).click(function(){ 
+		tr = $(this).closest('tr');
+		if(tr.hasClass('ant-collapsed')) tr.ant().expand(); 
+		else tr.ant().collapse(); 
+		tr.toggleClass('ant-collapsed');
 		});
+});
+
+
+// When clicking on a link to a collapsed step, expand it.
+$(function() {
+	$('.proof td:nth-child(2) a').click(function() {
+		$('a[name='+$(this).attr('href').substring(1)+']').closest('tr').removeClass('collapsed').find('div').slideDown();
+	});
+});
+
+// "Overall" button to restore the initial state
+$(function() {
 	$('#tools').append('<span class="icon" title="show all steps" id="overall"/></span>');
 	$('#overall').click(function() { 
 		if($(this).hasClass('collapse-all')) {
