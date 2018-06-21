@@ -152,7 +152,7 @@ $.getScript('mm-web-ui/externals/jquery-ui.min.js', function() {
 
 // Clipboard
 $.getScript('mm-web-ui/externals/clipboard.min.js', function() {
-	$('.proof td:nth-child(4) a').each(function() {
+	$('.proof td:nth-child(4) a, .stmt a, .hyp a').each(function() {
 		$(this).parent().attr('title', $(this).attr("title"));
 		$(this).parent().append('<span class="icon copy" title="copy this formula to clipboard" data-clipboard-text="'+htmlent($(this).attr("title"))+'"></span>'); });
 	new ClipboardJS('.copy');
